@@ -22,27 +22,46 @@ export default function Home() {
   const [quote, setQuote] = useState("Choose your battlefield: Soul or Body");
 
   const shuffleQuote = () => {
+    const audio = new Audio("/voice.mp3");
+    audio.play();
     const quotes = category === "soul" ? soulQuotes : bodyQuotes;
     const randomIndex = Math.floor(Math.random() * quotes.length);
     setQuote(quotes[randomIndex]);
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-black to-[#1a0d0d] text-white px-4">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-[url('/Knight.jpg')] bg-cover bg-center text-white px-4">
       <h1 className="text-4xl font-bold mb-6 text-orange-500 drop-shadow">
-        Dopamine Knights - Real Talk
+        Dopamine Knights
       </h1>
 
       <div className="flex gap-4 mb-4">
-        <button onClick={() => setCategory("soul")} className={`px-4 py-2 rounded-xl font-semibold ${category === "soul" ? "bg-orange-600" : "bg-gray-800"}`}>Soul War</button>
-        <button onClick={() => setCategory("body")} className={`px-4 py-2 rounded-xl font-semibold ${category === "body" ? "bg-orange-600" : "bg-gray-800"}`}>Body War</button>
+        <button
+          onClick={() => setCategory("soul")}
+          className={`px-4 py-2 rounded-xl font-semibold ${
+            category === "soul" ? "bg-orange-600" : "bg-gray-800"
+          }`}
+        >
+          Soul War
+        </button>
+        <button
+          onClick={() => setCategory("body")}
+          className={`px-4 py-2 rounded-xl font-semibold ${
+            category === "body" ? "bg-orange-600" : "bg-gray-800"
+          }`}
+        >
+          Body War
+        </button>
       </div>
 
       <div className="w-full max-w-xl bg-black/60 text-white border border-orange-500 shadow-lg rounded-2xl p-6 text-center">
         <p className="text-lg font-medium text-orange-100">{quote}</p>
       </div>
 
-      <button onClick={shuffleQuote} className="mt-6 bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-6 rounded-xl shadow-md transition-all">
+      <button
+        onClick={shuffleQuote}
+        className="mt-6 bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-6 rounded-xl shadow-md transition-all"
+      >
         Swap Sword
       </button>
     </div>
